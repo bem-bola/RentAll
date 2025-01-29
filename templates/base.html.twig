@@ -19,6 +19,8 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     </head>
     <body>
         <!-- Header-->

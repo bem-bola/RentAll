@@ -23,7 +23,9 @@ $input-focus-color:                 none;
 $input-focus-box-shadow:            none;
 
 
-$input-group-addon-color:           none;
-$input-group-addon-bg:              #21261F;
+$input-group-addon-color:           red !important;
+$input-group-addon-bg:              #ffffff !important;
+$input-group-addon-color:           $color-theme-green !important;
+$input-group-background:            green !important;
 
 $success:                           $color-theme-success;

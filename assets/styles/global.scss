@@ -5,6 +5,7 @@
 
 a, li {
   text-decoration: none;
+  color: inherit;
 }
 
 @font-face {
@@ -17,16 +18,18 @@ a, li {
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/RobotoSlab-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Helvetica Neue';
   src: url('../fonts/HelveticaNeueRoman.otf') format('truetype');
-  font-weight: 700;
+  font-weight: 400;
   font-style: normal;
 }
+
+
 // Les couleurs
 .color-theme-white{
   color: $color-theme-white;
@@ -43,13 +46,12 @@ a, li {
 .color-theme-dark-olive-green{
   color: $color-theme-dark-olive-green !important;
 }
-.color-theme-green-2{
+.bg-theme-green-2{
   background-color: $color-theme-green-2;
 }
 .color-theme-success{
   color: $color-theme-success;
 }
-
 .bg-theme-mint-green {
   background-color: $color-theme-mint-green;
 }
@@ -62,15 +64,25 @@ a, li {
 .bg-theme-success{
   background-color: $color-theme-success;
 }
-
+.bg-theme-success{
+  background-color: $color-theme-success;
+}
+.bg-theme-dark-moss-green{
+  background-color: $color-theme-dark-moss-green;
+}
+.border-theme-white-2{
+  border: 1px solid $color-theme-white-2;
+}
 .border-theme-dark-olive-green{
   border: 1px solid $color-theme-dark-olive-green ;
 }
 
-
-
-
-
+.cursor-pointer{
+  cursor: pointer;
+}
+.pointer-events-none {
+  pointer-events: none;
+}
 
 /* Personnalisation du datepicker */
 
@@ -98,9 +110,6 @@ a, li {
   }
 }
 
-main{
-  min-height: 4vh;
-}
 
 body {
   font-family:  'Helvetica Neue', 'Roboto', sans-serif;
@@ -143,6 +152,11 @@ header {
 
 
 main{
+  min-height: 4vh;
+
+  .btn-empty-input{
+    cursor: pointer !important;
+  }
   #page-item-details{
 
     #btn-details-img{
@@ -157,62 +171,75 @@ main{
       right: 1%;
     }
   }
+  .modal-carousel{
+    #prev-btn {
+      left: 29%;
+    }
 
-  // Carousel:
-  #prev-btn {
-    left: 29%;
+    #next-btn {
+      right: 29%;
+    }
+
+    .thumbnails div {
+      height: 10%;
+    }
+
+    .thumbnail {
+      height: 80px;
+      width: 100px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .thumbnail.active {
+      opacity: 1;
+      border: 2px solid;
+    }
+
+    .carousel-images {
+      height: 60vh;
+    }
+
+    .carousel-image {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .img-active {
+      display: block;
+    }
+
+    .img-hide {
+      display: none;
+    }
+
+    .fill a {
+      text-decoration: underline $color-theme-green !important;
+    }
   }
 
-  #next-btn {
-    right: 29%;
-  }
+  .search-item{
+    .city-name{
+      cursor: pointer;
+    }
+    .search-item:hover{
+      color: $color-theme-green !important;
+      font-size: 1.1em;
+    }
+    .item-card:hover{
+      border: 1px solid $color-theme-green-2;
+      .title-card{
+        color: $color-theme-green-2;
+      }
+    }
 
-  .thumbnails div {
-    height: 10%;
-  }
-
-  .thumbnail {
-    height: 80px;
-    width: 100px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-  }
-
-  .thumbnail.active {
-    opacity: 1;
-    border: 2px solid;
-  }
-
-  .carousel-images {
-    height: 60vh;
-  }
-
-  .carousel-image {
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .img-active {
-    display: block;
-  }
-
-  .img-hide {
-    display: none;
-  }
-
-  .fill a {
-    text-decoration: underline $color-theme-green !important;
   }
 
   #map{
     height: 300px;
   }
 }
-
-
-
-
 
 
 

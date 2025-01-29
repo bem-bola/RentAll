@@ -1,3 +1,4 @@
+import Routing from 'fos-router'
 require('bootstrap');
 
 const $ = require('jquery');

@@ -1,4 +1,4 @@
-<header class="box-shadow-fh">
+<header class="box-shadow-fh mb-5">
     <nav class="navbar navbar-expand-lg bg-theme-white-2 ">
         <div class="container col-11" id="container-nav">
 
@@ -12,8 +12,12 @@
                 <div class="col-3 d-flex" id="form-search">
                     <form action="" class="col-9">
                         <div class="form-group has-search d-flex bg-white">
-                            <input type="text" class="form-control border-0" placeholder="">
-                            <span class="bi bi-search form-control-feedback color-theme-green-2 bg-white p-2 fs-4"></span>
+                            <div class="input-group" id="city-search-content">
+                                <input type="text" class="form-control rounded-start-3 border-end-0" id="search-city" autocomplete="off" value="">
+                                <span class="input-group-text rounded-end-3 btn-empty-input"><i class="bi bi-x-circle"></i></span>
+                            </div>
+{#                            <input type="text" class="form-control border-0" placeholder="">#}
+{#                            <span class="bi bi-search form-control-feedback color-theme-green-2 bg-white p-2 fs-4"></span>#}
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vélo à venir chercher{% endblock %}
+
+
+{% block main %}
+
+    <div class="container d-flex search-item">
+
+        <div class="me-4">
+            <section class="container shadow-sm rounded-3 bg-theme-white-2 fs-6 py-3">
+                <form class="container" method="post">
+                    <div class="col-8 ms-3 mb-3">
+                        <label for="search-item" class="">Recherche</label>
+                        <input type="text" class="form-control rounded-3 " id="search-item" name="item" autocomplete="off"
+                               placeholder="">
+                    </div>
+                    <div class="col-8 ms-3 mb-3">
+                        <label for="search-category" class="">Catégories</label>
+
+                        <select class="form-select rounded-3" id="search-category" name="category" placeholder="">
+
+                            {% for city in 1..10 %}
+                                <option>Option-{{ city }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div class="col-8 ms-3">
+                        <div class="input-group" id="city-search-content">
+                            <label for="search-city" class="col-12">Localisation</label>
+                            <input type="text" class="form-control rounded-start-3 border-end-0" id="search-city" autocomplete="off" value="">
+                            <span class="input-group-text rounded-end-3 btn-empty-input"><i class="bi bi-x-circle"></i></span>
+                        </div>
+
+                        <div class="rounded-3 shadow-sm bg-white mt-2" id="city-options"></div>
+                    </div>
+                    <div class="col-8 ms-3 mb-3">
+                        <label class="col-12">Prix</label>
+                        <div class="d-flex">
+                            <div class="input-group me-2" id="price-min">
+                                <input type="text" class="form-control rounded-start-3 border-end-0 filter-price" placeholder="Minimum">
+                                <span class="input-group-text border-end-3 rounded-end-3">€</span>
+                            </div>
+
+                            <div class="input-group" id="price-max">
+                                <input type="text" class="form-control rounded-start-3 border-end-0 filter-price" placeholder="Maximum">
+                                <span class="input-group-text border-end-3 rounded-end-3">€</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-8">
+                        <button type='submit' class="bg-theme-success color-theme-white border-0 py-2 px-5 rounded-3 col-12">Lancer la recherche</button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+
+{#        <section class="container col-7 bg-theme-white-2 rounded-3">#}
+        <section class="container col-8">
+
+            <div class="bg-theme-white-2 rounded-3 d-flex justify-content-between px-4 py-2 mb-3">
+                <p class="m-0 text-black-50">Nombre de résultats: 50</p>
+                <p class="m-0 text-black-50">Trier par: <span class="color-theme-green cursor-pointer"><i class="bi bi-sort-up"></i></span></p>
+            </div>
+            <div class="card-content">
+
+                <ul class="rounded-3 p-0">
+                    {% for i in 1..2 %}
+
+                        <li class="bg-theme-white-2 col-12 rounded-3 mb-3 item-card border-theme-green-2">
+                            <a href="#" class="d-flex">
+                                <div class="img-card-search col-4">
+                                    <img src="https://picsum.photos/700/300" alt="img-{{ i }}" class="col-12 rounded-start-3 h-100">
+                                </div>
+
+                                <div class="py-3 ms-3">
+                                    <h3 class="fs-6 fw-bolder title-card ">Drône Pro 4 - 4 batteries</h3>
+                                    <p class="fw-bold">150 €</p>
+                                    <span class="border-theme-dark-olive-green p-2 rounded-3">Particulier</span>
+                                    <div class="d-flex flex-column col-12 text-black-50 mt-3">
+                                        <small class="category d-block">Technologie</small>
+                                        <small class="city">Cergy - 95000</small>
+                                        <small class="date">Publié le 25 décembre à 12:30</small>
+                                    </div>
+                                </div>
+
+
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pagination-content col-8 mx-auto">
+
+                    <ul class="pagination d-flex justify-content-between mt-5">
+                        {% if nbPage > 1 %}
+
+                            {# Bouton "Précédent" #}
+                            <li class="{{ currentPage == 1 ? 'pointer-events-none' : '' }} rounded-3 p-2">
+                                <a href="{{ path('app_item_search', {'page': currentPage - 1}) }}">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+
+                            {# Définition des limites de la pagination #}
+                            {% set startPage = 1 %}
+                            {% set endPage = nbPage %}
+
+                            {% if nbPage > 10 %}
+                                {% if currentPage <= 5 %}
+                                    {% set startPage = 1 %}
+                                    {% set endPage = 10 %}
+                                {% elseif currentPage >= nbPage - 4 %}
+                                    {% set startPage = nbPage - 9 %}
+                                    {% set endPage = nbPage %}
+                                {% else %}
+                                    {% set startPage = currentPage - 4 %}
+                                    {% set endPage = currentPage + 5 %}
+                                {% endif %}
+                            {% endif %}
+
+                            {# Affichage des boutons de pagination #}
+                            {% for page in startPage..endPage %}
+                                <li  class="{{ page == currentPage ? 'bg-theme-dark-moss-green color-theme-white-2 active pointer-events-none' }} rounded-3 p-2">
+                                    <a href="{{ path('app_item_search', {'page': page}) }}">
+                                        {{ page }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {# Bouton "Suivant" #}
+                            <li class="{{ currentPage == nbPage ? 'pointer-events-none' : '' }} rounded-3 p-2">
+                                <a href="{{ path('app_item_search', {'page': currentPage + 1}) }}">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+
+                        {% endif %}
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    {% block javascripts %}
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', () => {
+                // Fonction remplir les noms de ville
+                const getCities = async (input, dropdown) => {
+
+                    const url = Routing.generate('app_item_city', {
+                        city: input.value
+                    })
+
+
+                    try {
+                        const response = await fetch(url, {
+                            method: 'GET',
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        })
+                        const json = await response.json()
+
+                        dropdown.innerHTML = ''
+                        dropdown.innerHTML = json[0]
+
+                    } catch (error) {
+                        console.log(error.message)
+                    }
+
+                }
+
+                // Function vider input sur un click
+                const emptyInput = (btn) => {
+
+                    btn.forEach((element) => {
+                        element.addEventListener('click', () => {
+                            const idParent = element.parentNode.id
+                            const input = document.querySelector(`#${idParent} input`)
+                            input.value = '';
+                        })
+
+                    })
+                }
+
+                // fonction qui empeche les saisies non numériques
+                const blockNonNumericInput = (event) => {
+                    // Vérifier si la touche pressée est un chiffre (0-9) ou une touche de contrôle
+                    const key = event.key;
+                    // Ajouter un événement 'keydown' pour bloquer les caractères non numériques
+                    if (!/[0-9]/.test(key) &&
+                        key !== "Backspace" &&
+                        key !== "ArrowLeft" &&
+                        key !== "ArrowRight" &&
+                        key !== "Tab") {
+                        event.preventDefault();
+                    }
+                }
+
+                const inputSearchCity = document.getElementById("search-city");
+                const cityOptions = document.getElementById("city-options");
+
+                const btnEmptyInput = document.querySelectorAll('.btn-empty-input')
+                const inputsPrice = document.querySelectorAll('.filter-price')
+
+                // afficher la liste des villes
+                inputSearchCity.addEventListener('keyup', async (e) => {
+                    cityOptions.classList.remove('d-none')
+                    await getCities(inputSearchCity, cityOptions)
+                })
+                // cacher la liste de ville
+                inputSearchCity.addEventListener('blur', () => {
+                    cityOptions.classList.add('d-none')
+                })
+                // vider input sur click
+                emptyInput(btnEmptyInput)
+
+                // bloquer saisies non numériques
+                inputsPrice.forEach((input) => {
+                    input.addEventListener('keydown', function(event) {
+                        blockNonNumericInput(event)
+                    });
+                })
+
+
+
+
+            })
+        </script>
+    {% endblock %}
+{% endblock %}
